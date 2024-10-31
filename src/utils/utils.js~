@@ -1,0 +1,19 @@
+'use strict';
+
+/**
+ * Based off of [the offical Google document](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
+ *
+ * Some parts from [this implementation](http://facstaff.unca.edu/mcmcclur/GoogleMaps/EncodePolyline/PolylineEncoder.js)
+ * by [Mark McClure](http://facstaff.unca.edu/mcmcclur/)
+ *
+ * @module utils
+ */
+
+let utils = {};
+
+utils.rol = function(number) {
+    return +number.toFixed(2);
+}
+
+
+export default utils

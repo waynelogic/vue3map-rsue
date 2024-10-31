@@ -1,0 +1,32 @@
+<script setup>
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
+import PageContainer from "@/components/PageContainer.vue";
+
+const pages = [
+    {
+        name: 'Такси',
+        link: '/taxi'
+    },
+    {
+        name: 'Best Place',
+        link: '/best-place'
+    }
+]
+</script>
+
+<template>
+    <Breadcrumbs title="Главная"/>
+    <PageContainer>
+        <section>
+            <div class="container">
+                <div class="grid grid-cols-3">
+                    <RouterLink :to="page.link" class="text-xl" v-for="page in pages" :key="page.name">
+                    <div class="border shadow rounded-xl p-4" >
+                        {{ page.name }}
+                    </div>
+                    </RouterLink>
+                </div>
+            </div>
+        </section>
+    </PageContainer>
+</template>

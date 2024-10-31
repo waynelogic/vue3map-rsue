@@ -1,0 +1,49 @@
+<script setup>
+import {onMounted, ref} from "vue";
+
+const props = defineProps({
+    show: {
+        type: Boolean,
+        default: false
+    },
+    placeToListen: {
+        type: Object,
+        default: window
+    }
+})
+
+const x = ref(0);
+const y = ref(0);
+
+onMounted(() => {
+    props.placeToListen.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        x.value = e.clientX;
+        y.value = e.clientY;
+    })
+})
+</script>
+
+<template>
+    <div v-if="show" :style="{left: x + 'px', top: y + 'px'}" class="absolute inline-flex bg-white border shadow rounded-xl overflow-hidden z-[999]">
+        <slot/>
+    </div>
+
+    <div id="contextMenu" class="hidden absolute">
+        <ul class="menu flex flex-col rounded-md shadow-xl overflow-hidden">
+            <!--Opens a new tab on click-->
+            <li onclick="window.open('/code/104')" class="context-menu-item"><i class="iconoir-open-in-window mr-1"></i>Open in New Tab</li>
+            <!-- toggles light mode and dark mode-->
+            <li id="dark-toggle" class="context-menu-item"><i class="iconoir-half-moon mr-1"></i>Turn On Dark Mode</li>
+            <!--Opens the print page option-->
+            <li onclick="window.print()"
+                class="context-menu-item">
+                <i class="iconoir-printer"></i>
+                Print</li>
+        </ul>
+    </div>
+</template>
+
+<style scoped>
+
+</style>

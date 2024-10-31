@@ -1,0 +1,28 @@
+export const idb = (dbName = 'default') => {
+    let db = null;
+    const init = () => {
+        let request = window.indexedDB.open(dbName, 1);
+        request.onsuccess = function(event) {
+            db = event.target.result;
+        }
+        console.log("Инициализация IndexedDB выполнена!");
+    };
+    init();
+    const getBase = () => {
+        return db;
+    }
+    const set = (key, value) => {
+        console.log(db)
+        // db.transaction([key], 'readwrite').objectStore(key).put(value);
+    }
+
+    const get = (key) => {
+        return db.transaction([key], 'readonly').objectStore(key).get(1);
+    }
+
+
+
+
+
+    return { getBase, set, get };
+};
